@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss';
-import {getAllUsers} from '../../services/userService';
+import {getAllUsers, createNewUserService, deleteUserService} from '../../services/userService';
 import ModalUser from './ModalUser';
+import { emitter } from '../../utils/emitter';
 
 class UserManage extends Component {
 
@@ -16,24 +17,66 @@ class UserManage extends Component {
     }
 
     async componentDidMount() {
+      await this.getAllUsersFromReact();
+    }
+
+    //re-render component after action
+    getAllUsersFromReact = async () => {
       let response = await getAllUsers('ALL')
       if(response && response.errCode ===0) {
         this.setState({
           arrUsers: response.users
         })
-      }
+      }      
     }
 
+    //click on add button (parent)
     handleAddNewUser = () => {
       this.setState({
         isOpenModalUser: true,
       })
     }
 
+    //reset state of child component (child)
     toggleUserModal = () => {
       this.setState({
         isOpenModalUser: !this.state.isOpenModalUser,
       })
+    }
+
+    //click on create button (child)
+    createNewUser = async (data) => {
+      try {
+      let response = await createNewUserService(data);
+      if(response && response.errCode !== 0) {
+        alert(response.errMessage)
+      } else {
+        await this.getAllUsersFromReact();
+        this.setState({
+          isOpenModalUser: false
+        })
+
+        //fire event to child (clear data after create)
+        emitter.emit('EVENT_CLEAR_MODAL_DATA')
+      }
+      } catch(e) {
+        console.log(e)
+      }
+    }
+
+    //click on delete button (parent)
+    handleDeleteUser = async (user) => {
+      console.log('click delete',user)
+      try{
+        let res = await deleteUserService(user.id)
+        if(res && res.errCode ===0) {
+          await this.getAllUsersFromReact();
+        } else {
+          alert(res.errMessage)
+        }
+      } catch (e) {
+        console.log (e);
+      }
     }
 
     //** Life cycle of component: 1: run constructor (init state) -> 2: run didmount (set state) -> 3: render */
@@ -44,8 +87,8 @@ class UserManage extends Component {
             <div className='users-container'>
               <ModalUser
                 isOpen = {this.state.isOpenModalUser}
-                toggleFromParent={this.toggleUserModal}
-                test={'abc'}
+                toggleFromParent={this.toggleUserModal} //connect to modal state
+                createNewUser={this.createNewUser}// get data input from child to run func create
               />
                 <div className=" title text-center">Manage users</div>
                 <div className='mx-1'>
@@ -57,6 +100,7 @@ class UserManage extends Component {
                 </div>
                 <div className='users-table mt-3 mx-1'>
                 <table id="customers">
+                <tbody>
                   <tr>
                     <th>Email</th>
                     <th>First name</th>
@@ -64,6 +108,7 @@ class UserManage extends Component {
                     <th>Address</th>
                     <th>Action</th>
                   </tr>
+                  
                     { arrUsers && arrUsers.map((item, index) => {
                       return(
                         <tr>
@@ -73,13 +118,14 @@ class UserManage extends Component {
                           <td>{item.address}</td>
                           <td>
                             <button className='btn-edit'><i className='fas fa-pencil-alt'></i></button>
-                            <button className='btn-delete'><i className='fas fa-trash'></i></button>
+                            <button className='btn-delete' onClick={() => this.handleDeleteUser(item)}><i className='fas fa-trash'></i></button>
                           </td>
                         </tr>
                       )
                     })
 
                     }
+                </tbody>
                 </table>
                 </div>
             </div>
