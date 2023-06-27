@@ -1,4 +1,25 @@
 {
+    "homeheader": {
+        "speciality": "Specialty",
+        "searchdoctor": "Find doctor by specialty",
+        "health-facility": "Health facility",
+        "select-facility": "Chose facility",
+        "doctor": "Doctor",
+        "chose-doc": "Chose doctor",
+        "fee": "Clinic package",
+        "check-health": "General health check",
+        "support": "Support"
+    },
+    "banner": {
+        "title1": "MEDICAL FLATPORMS",
+        "title2": "COMPREHENSIVE HEALTHCARE",
+        "child1": "Specialize check",
+        "child2": "Telemedicine",
+        "child3": "General check",
+        "child4": "Medical test",
+        "child5": "Mental health",
+        "child6": "Dental check"
+    },
     "common": {
         "add": "Add",
         "edit": "Edit",
