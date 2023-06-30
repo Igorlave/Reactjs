@@ -23,7 +23,7 @@ class About extends Component {
                         title="CÀ PHÊ KHỞI NGHIỆP VTV1 - BOOKINGCARE - HỆ THỐNG ĐẶT LỊCH KHÁM TRỰC TUYẾN" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowfullscreen></iframe>
+                        allowFullscreen></iframe>
                     </div>
                     <div className='content-right'>
                         <p>

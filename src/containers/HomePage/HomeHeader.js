@@ -5,7 +5,7 @@ import logo from '../../assets/logo.svg'
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGE } from "../../utils";
 import { changeLanguageApp } from '../../store/actions/appActions';
-import { lang } from 'moment/moment';
+// import { lang } from 'moment/moment';
 
 
 class HomeHeader extends Component {
@@ -14,14 +14,11 @@ class HomeHeader extends Component {
     changeLanguage = (language) => {
         //fire redux event (action) changeLanguage in func 'mapDispatchToProps' 
         this.props.changeLanguageAppRedux(language)
-
-
     }
 
     render() {
 
         let language = this.props.language; //'props.language' get from redux
-        console.log('check language',language)
         return (
             <React.Fragment>
             <div className='home-header-container'>
