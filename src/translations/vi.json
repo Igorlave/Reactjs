@@ -49,6 +49,7 @@
         "position": "Chức danh",
         "roleid": "Vai trò",
         "image": "Hình ảnh",
-        "save": "Lưu"
+        "save": "Lưu mới",
+        "edit": "Lưu thay đổi"
     }
 }
