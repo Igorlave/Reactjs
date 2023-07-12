@@ -51,5 +51,9 @@
         "image": "Hình ảnh",
         "save": "Lưu mới",
         "edit": "Lưu thay đổi"
+    },
+    "homepage": {
+        "best-doctor": "Bác sĩ nổi bật",
+        "showmore": "Xem thêm"
     }
 }

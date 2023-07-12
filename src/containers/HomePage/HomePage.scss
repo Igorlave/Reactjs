@@ -29,6 +29,9 @@
         background: #d2caca !important;
     }
 }
+.slick-disabled {
+    display: none !important;
+}
 .slick-next::before {
     font-family: FontAwesome !important;
     color: gray !important;
@@ -130,7 +133,8 @@
     }
     .section-custom {
         padding: 5px;
-
+        cursor: pointer;
+        
         .custom-border {
             border: 1px solid red;
             padding: 20px;

@@ -50,5 +50,9 @@
         "image": "Image",
         "save": "Save new",
         "edit": "Save changes"
+    },
+    "homepage": {
+        "best-doctor": "Outstanding doctor",
+        "showmore": "Show more"
     }
 }

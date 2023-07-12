@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes';
-import { getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService, getTopDoctorHomeService } from "../../services/userService"
+import { getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService, getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService } from "../../services/userService"
 import { toast } from 'react-toastify';
 
 export const fetchGenderStart =  () => {
@@ -212,6 +212,54 @@ export const fetchTopDoctor = () => {
             console.log('fetch top doc fail', e )
             dispatch({
                 type: actionTypes.FETCH_TOP_DOCTORS_FAILED,
+            })
+        }
+    }
+}
+
+export const fetchAllDoctors = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllDoctors();
+            if(res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
+                    dataDr: res.data
+                })
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_DOCTORS_FAILED,
+                })
+            }
+        } catch (e) {
+            console.log('fetch all doc fail', e )
+            dispatch({
+                type: actionTypes.FETCH_ALL_DOCTORS_FAILED,
+            })
+        }
+    }
+}
+
+export const saveDetailDoctor = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await saveDetailDoctorService(data);
+            if(res && res.errCode === 0) {
+                toast.success("Save info success");
+                dispatch({
+                    type: actionTypes.SAVE_DETAIL_DOCTORS_SUCCESS,
+                })
+            } else {
+                toast.error("Save info fail");
+                dispatch({
+                    type: actionTypes.SAVE_DETAIL_DOCTORS_FAILED,
+                })
+            }
+        } catch (e) {
+            toast.error("Save info fail"); 
+            console.log('save detail doc fail', e )
+            dispatch({
+                type: actionTypes.SAVE_DETAIL_DOCTORS_FAILED,
             })
         }
     }
