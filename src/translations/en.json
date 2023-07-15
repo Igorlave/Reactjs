@@ -34,6 +34,9 @@
             "manage-specialty": "Managed specialty",
             "handbook": "Handbook",
             "manage-handbook": "Managed handbook"
+        },
+        "doctor": {
+            "manage-schedule": "Manage doctor's schedule"
         }
     },
     "manage-user": {
@@ -54,5 +57,11 @@
     "homepage": {
         "best-doctor": "Outstanding doctor",
         "showmore": "Show more"
+    },
+    "manage-schedule": {
+        "title": "Manage doctor's schedule",
+        "chosedoc": "Chose doctor",
+        "chosetime": "Chose time",
+        "save":"Save"
     }
 }

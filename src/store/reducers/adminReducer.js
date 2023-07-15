@@ -8,12 +8,13 @@ const initialState = {
     users: [],
     topDoctors: [],
     allDoctors: [],
+    allScheduleTime: [],
 }
 
 const adminReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_GENDER_START:
-            let copyState = {...state};
+            let copyState = { ...state };
             copyState.isLoadingGender = true;
             return {
                 ...copyState
@@ -31,17 +32,17 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state
             }
-            case actionTypes.FETCH_POSITION_SUCCESS:
-                state.positions = action.data;
-                return {
-                    ...state
-                }
-            case actionTypes.FETCH_POSITION_FAILED:
-                state.positions = action.data;
-                return {
-                    ...state
-                }
-            case actionTypes.FETCH_GENDER_SUCCESS:
+        case actionTypes.FETCH_POSITION_SUCCESS:
+            state.positions = action.data;
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_POSITION_FAILED:
+            state.positions = action.data;
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_GENDER_SUCCESS:
             state.genders = action.data;
             state.isLoadingGender = false;
 
@@ -64,7 +65,7 @@ const adminReducer = (state = initialState, action) => {
                 ...state
             }
         case actionTypes.FETCH_ROLE_SUCCESS:
-            state.roles = action.data;    
+            state.roles = action.data;
             return {
                 ...state
             }
@@ -100,6 +101,16 @@ const adminReducer = (state = initialState, action) => {
             }
         case actionTypes.FETCH_ALL_DOCTORS_FAILED:
             state.allDoctors = [];
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS:
+            state.allScheduleTime = action.dataTime;
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED:
+            state.allScheduleTime = [];
             return {
                 ...state
             }

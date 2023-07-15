@@ -58,6 +58,12 @@ class Login extends Component {
         }
     }
 
+    handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            this.handleLogin();    
+        }
+    }
+
     render() {
        
         return (
@@ -71,7 +77,8 @@ class Login extends Component {
                             className='form-control' 
                             placeholder='Enter your username'
                             value={this.state.username}
-                            onChange={(event) => this.handleOnChangeUsername(event)}
+                                onChange={(event) => this.handleOnChangeUsername(event)}
+                                
                             ></input>
                         </div>
                         <div className='col-12 form-group login-input'>
@@ -79,7 +86,8 @@ class Login extends Component {
                             <input type='password' 
                             className='form-control' 
                             placeholder='Enter your password'
-                            onChange={(event) => {this.handleOnChangePassword(event)}}
+                                onChange={(event) => { this.handleOnChangePassword(event) }}
+                                onKeyDown={(event) => this.handleKeyDown(event)}
                             ></input>
                         </div>
                         <div className='col-12'
